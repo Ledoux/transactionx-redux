@@ -1,0 +1,48 @@
+{
+  "ava": {
+    "babel": {
+      "presets": [
+        "es2015",
+        "latest"
+      ]
+    },
+    "require": [
+      "babel-register",
+      "babel-polyfill"
+    ]
+  },
+  "author": "Erwan Ledoux",
+  "dependencies": {
+    "entitiex": "latest",
+    "immutable": "3.8.1",
+    "lodash": "^4.11.2",
+    "normalizr": "2.2.1",
+    "pluralize": "3.0.0",
+    "redux": "^3.5.2",
+    "redux-saga": "^0.10.4",
+    "transactionx-express": "latest"
+  },
+  "devDependencies": {
+    "ava": "^0.18.2",
+    "babel-cli": "^6.16.0",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-latest": "6.22.0",
+    "concurrently": "^3.1.0",
+    "standard": "^7.0.1"
+  },
+  "license": "MIT",
+  "main": "lib/index.js",
+  "name": "transactionx-redux",
+  "scripts": {
+    "compile": "./node_modules/.bin/babel --presets es2015,latest -d lib/ src/",
+    "test": "./node_modules/.bin/ava -v -r babel-polyfill",
+    "localhost": "concurrently \"npm run localhost-database\" \"npm run localhost-express\"",
+    "localhost-database" : "sh scripts/localhost_database.sh",
+    "localhost-express" : "node scripts/localhost_express.js",
+    "dev": "concurrently \"npm run dev-database\" \"npm run dev-watch\"",
+    "dev-database": "sh scripts/localhost_database.sh",
+    "dev-watch": "nodemon src/index.js --watch src --exec \"npm run compile\""
+  },
+  "version": "0.0.1"
+}
